@@ -42,13 +42,13 @@ REPO_SCAN_LIMIT = 100     # nombre de dépôts examinés (les plus récemment po
 FALLBACK_COLOR = "#8b949e"
 
 # Palette radar
-BG = "#0a0e3a"
-PANEL_BG = "#101765"
-GRID = "#3a4fd6"
-EDGE = "#2a3aa8"
-PHOS = "#b8c4ff"
-TEXT = "#dfe5ff"
-DIM = "#7f90e8"
+BG = "#0a0f14"
+PANEL_BG = "#0d1a14"
+GRID = "#1d5c3a"
+EDGE = "#16402b"
+PHOS = "#3dff9a"
+TEXT = "#a7f3c8"
+DIM = "#4f8f6b"
 
 FONT_STACK = (
     "ui-monospace, SFMono-Regular, Menlo, Consolas, "
