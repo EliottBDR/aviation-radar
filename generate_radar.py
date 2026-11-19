@@ -42,13 +42,13 @@ REPO_SCAN_LIMIT = 100     # nombre de dépôts examinés (les plus récemment po
 FALLBACK_COLOR = "#8b949e"
 
 # Palette radar
-BG = "#0a0f14"
-PANEL_BG = "#0d1a14"
-GRID = "#1d5c3a"
-EDGE = "#16402b"
-PHOS = "#3dff9a"
-TEXT = "#a7f3c8"
-DIM = "#4f8f6b"
+BG = "#0a0e3a"
+PANEL_BG = "#101765"
+GRID = "#3a4fd6"
+EDGE = "#2a3aa8"
+PHOS = "#b8c4ff"
+TEXT = "#dfe5ff"
+DIM = "#7f90e8"
 
 FONT_STACK = (
     "ui-monospace, SFMono-Regular, Menlo, Consolas, "
@@ -482,7 +482,7 @@ def build_svg(profile: Profile, aircraft: list[Aircraft], cfg: Config, now: date
 <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
 </filter>
 <radialGradient id="vignette" cx="28%" cy="52%" r="75%">
-<stop offset="0" stop-color="#0f2a1d" stop-opacity="0.55"/>
+<stop offset="0" stop-color="#1b2a9e" stop-opacity="0.55"/>
 <stop offset="1" stop-color="{BG}" stop-opacity="0"/>
 </radialGradient>
 <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse">
@@ -503,7 +503,7 @@ def build_svg(profile: Profile, aircraft: list[Aircraft], cfg: Config, now: date
     p.append(f'<line x1="24" y1="46" x2="{W - 24}" y2="46" stroke="{EDGE}"/>')
 
     # Radar : fond, anneaux, graduations
-    p.append(f'<circle cx="{CX}" cy="{CY}" r="{R}" fill="#07110c" stroke="{GRID}" stroke-width="1.5"/>')
+    p.append(f'<circle cx="{CX}" cy="{CY}" r="{R}" fill="#070b3d" stroke="{GRID}" stroke-width="1.5"/>')
     for days, text in ((1, "24H"), (7, "7D"), (30, "30D"), (90, "90D"), (365, "1Y")):
         r = age_to_radius(days, R_MIN, R_MAX)
         p.append(f'<circle cx="{CX}" cy="{CY}" r="{r:.1f}" fill="none" stroke="{GRID}" '
