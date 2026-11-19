@@ -401,7 +401,7 @@ def polar(cx: float, cy: float, radius: float, bearing_deg: float) -> tuple[floa
 def fmt_age(days: float) -> str:
     hours = days * 24
     if hours < 1:
-        return "<1H"
+       return "&lt;1H"
     if hours < 48:
         return f"{int(hours)}H"
     if days < 60:
