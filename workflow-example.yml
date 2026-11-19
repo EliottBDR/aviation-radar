@@ -1,0 +1,54 @@
+name: Update aviation radar
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # toutes les 6 heures (UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-radar
+  cancel-in-progress: false
+
+jobs:
+  update-radar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout profile repo
+        uses: actions/checkout@v4
+
+      - name: Checkout radar tool
+        uses: actions/checkout@v4
+        with:
+          repository: EliottBDR/aviation-radar
+          path: .radar-tool
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r .radar-tool/requirements.txt
+
+      - name: Generate radar SVG
+        env:
+          GITHUB_TOKEN: ${{ secrets.RADAR_TOKEN || secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ github.repository_owner }}
+          OUTPUT_PATH: aviation-stats.svg
+        run: python .radar-tool/generate_radar.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add aviation-stats.svg
+          if git diff --cached --quiet; then
+            echo "Aucun changement à commiter."
+          else
+            git commit -m "chore: update aviation radar [skip ci]"
+            git push origin HEAD:${{ github.event.repository.default_branch }}
+          fi
