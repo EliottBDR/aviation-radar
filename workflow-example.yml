@@ -18,16 +18,16 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout profile repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Checkout radar tool
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: EliottBDR/aviation-radar
           path: .radar-tool
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
